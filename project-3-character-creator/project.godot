@@ -14,6 +14,13 @@ config/name="Project 3 Character Creator"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[layer_names]
+
+2d_render/layer_1="Background"
+2d_render/layer_2="Characters"
+2d_render/layer_3="Clothes"
+2d_render/layer_4="Misc"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

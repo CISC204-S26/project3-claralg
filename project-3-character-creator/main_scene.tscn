@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bem0ciy654gt3"]
+
+[ext_resource type="Texture2D" uid="uid://xj4hrbax7ky5" path="res://Sam & Max Dress Up Assets/Sam & Max-export.png" id="1_2c62f"]
+[ext_resource type="AudioStream" uid="uid://ckr3h1u2rrr8b" path="res://Sam & Max Dress Up Assets/The Office.mp3" id="2_gyfs4"]
+[ext_resource type="Texture2D" uid="uid://6dunxnaxg6h" path="res://Sam & Max Dress Up Assets/JimmySpritesheet.png" id="3_gyfs4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5x1h"]
+atlas = ExtResource("3_gyfs4")
+region = Rect2(0, 0, 92, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mm7a"]
+atlas = ExtResource("3_gyfs4")
+region = Rect2(92, 0, 92, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq1ik"]
+atlas = ExtResource("3_gyfs4")
+region = Rect2(184, 0, 92, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfk4m"]
+atlas = ExtResource("3_gyfs4")
+region = Rect2(0, 34, 92, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
+atlas = ExtResource("3_gyfs4")
+region = Rect2(92, 34, 92, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
+atlas = ExtResource("3_gyfs4")
+region = Rect2(184, 34, 92, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr18j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5x1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mm7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq1ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfk4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66tet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ycvg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="MainScene" type="Node2D" unique_id=1304818345]
+
+[node name="SamAndMax" type="Sprite2D" parent="." unique_id=797958478]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(574, 402)
+texture = ExtResource("1_2c62f")
+
+[node name="MaxClothes" type="Node" parent="." unique_id=185037129]
+
+[node name="SamClothes" type="Node" parent="." unique_id=185753981]
+
+[node name="Backgrounds" type="Node" parent="." unique_id=1936355858]
+
+[node name="Office" type="TextureRect" parent="Backgrounds" unique_id=814606397]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OfficeHallway" type="TextureRect" parent="Backgrounds" unique_id=1813422098]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sidewalk" type="TextureRect" parent="Backgrounds" unique_id=1827338065]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OfficeTheme" type="AudioStreamPlayer2D" parent="." unique_id=2092154143]
+position = Vector2(593, 328)
+stream = ExtResource("2_gyfs4")
+autoplay = true
+parameters/looping = true
+
+[node name="Jimmy" type="AnimatedSprite2D" parent="." unique_id=1065484589]
+light_mask = 8
+visibility_layer = 8
+position = Vector2(-93, 613)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wr18j")
+frame_progress = 0.52056396
+
+[node name="JimmyMovement" type="AnimationPlayer" parent="Jimmy" unique_id=1639207700]
