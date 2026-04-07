@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://bem0ciy654gt3"]
 
 [ext_resource type="Texture2D" uid="uid://xj4hrbax7ky5" path="res://Sam & Max Dress Up Assets/Sam & Max-export.png" id="1_2c62f"]
+[ext_resource type="Texture2D" uid="uid://wfvugpadw4u0" path="res://Sam & Max Dress Up Assets/Backgrounds/SamAndMaxSidewalk.png" id="1_d5x1h"]
 [ext_resource type="AudioStream" uid="uid://ckr3h1u2rrr8b" path="res://Sam & Max Dress Up Assets/The Office.mp3" id="2_gyfs4"]
 [ext_resource type="Texture2D" uid="uid://6dunxnaxg6h" path="res://Sam & Max Dress Up Assets/JimmySpritesheet.png" id="3_gyfs4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d5x1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mm7a"]
+size = Vector2(92.5, 38.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5x1h"]
 atlas = ExtResource("3_gyfs4")
@@ -54,13 +60,44 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="MainScene" type="Node2D" unique_id=1304818345]
+[sub_resource type="Animation" id="Animation_d5x1h"]
+resource_name = "JimmyMove"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.06, 2.03, 3.03, 4.04, 5.04, 6.07, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-101, 611), Vector2(150, 611), Vector2(350, 611), Vector2(550, 611), Vector2(750, 611), Vector2(950, 611), Vector2(1150, 611), Vector2(1350, 611)]
+}
 
-[node name="SamAndMax" type="Sprite2D" parent="." unique_id=797958478]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(574, 402)
-texture = ExtResource("1_2c62f")
+[sub_resource type="Animation" id="Animation_8mm7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-101, 611)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hq1ik"]
+_data = {
+&"JimmyMove": SubResource("Animation_d5x1h"),
+&"RESET": SubResource("Animation_8mm7a")
+}
+
+[node name="MainScene" type="Node2D" unique_id=1304818345]
 
 [node name="MaxClothes" type="Node" parent="." unique_id=185037129]
 
@@ -69,16 +106,22 @@ texture = ExtResource("1_2c62f")
 [node name="Backgrounds" type="Node" parent="." unique_id=1936355858]
 
 [node name="Office" type="TextureRect" parent="Backgrounds" unique_id=814606397]
+z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="OfficeHallway" type="TextureRect" parent="Backgrounds" unique_id=1813422098]
+z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sidewalk" type="TextureRect" parent="Backgrounds" unique_id=1827338065]
-offset_right = 40.0
-offset_bottom = 40.0
+z_index = -1
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 1150.0
+offset_bottom = 650.0
+texture = ExtResource("1_d5x1h")
 
 [node name="OfficeTheme" type="AudioStreamPlayer2D" parent="." unique_id=2092154143]
 position = Vector2(593, 328)
@@ -86,12 +129,32 @@ stream = ExtResource("2_gyfs4")
 autoplay = true
 parameters/looping = true
 
-[node name="Jimmy" type="AnimatedSprite2D" parent="." unique_id=1065484589]
+[node name="SamAndMax" type="Sprite2D" parent="." unique_id=797958478]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(574, 402)
+texture = ExtResource("1_2c62f")
+
+[node name="JimmyBody" type="AnimatableBody2D" parent="." unique_id=1406466682]
+position = Vector2(-101, 611)
+scale = Vector2(2, 2)
+physics_material_override = SubResource("PhysicsMaterial_d5x1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JimmyBody" unique_id=924361578]
+position = Vector2(-0.25, -0.25)
+shape = SubResource("RectangleShape2D_8mm7a")
+
+[node name="Jimmy" type="AnimatedSprite2D" parent="JimmyBody" unique_id=1065484589]
 light_mask = 8
 visibility_layer = 8
-position = Vector2(-93, 613)
-scale = Vector2(2, 2)
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_wr18j")
-frame_progress = 0.52056396
+autoplay = "default"
+frame_progress = 0.4595413
 
-[node name="JimmyMovement" type="AnimationPlayer" parent="Jimmy" unique_id=1639207700]
+[node name="JimmyMovement" type="AnimationPlayer" parent="JimmyBody" unique_id=1639207700]
+libraries/ = SubResource("AnimationLibrary_hq1ik")
+autoplay = &"JimmyMove"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1542839725]
+position = Vector2(575, 325)
