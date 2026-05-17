@@ -1,160 +1,129 @@
 [gd_scene format=3 uid="uid://bem0ciy654gt3"]
 
-[ext_resource type="Texture2D" uid="uid://xj4hrbax7ky5" path="res://Sam & Max Dress Up Assets/Sam & Max-export.png" id="1_2c62f"]
-[ext_resource type="Texture2D" uid="uid://wfvugpadw4u0" path="res://Sam & Max Dress Up Assets/Backgrounds/SamAndMaxSidewalk.png" id="1_d5x1h"]
-[ext_resource type="AudioStream" uid="uid://ckr3h1u2rrr8b" path="res://Sam & Max Dress Up Assets/The Office.mp3" id="2_gyfs4"]
-[ext_resource type="Texture2D" uid="uid://6dunxnaxg6h" path="res://Sam & Max Dress Up Assets/JimmySpritesheet.png" id="3_gyfs4"]
+[ext_resource type="FontFile" uid="uid://f0xjklliigc" path="res://Assets/runescape_uf.ttf" id="1_0f027"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d5x1h"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
+sky_top_color = Color(0.6802667, 0.73713064, 0.81325704, 1)
+sky_horizon_color = Color(0.77878714, 0.79300314, 0.8120347, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.77878714, 0.79300314, 0.8120347, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mm7a"]
-size = Vector2(92.5, 38.5)
+[sub_resource type="Sky" id="Sky_0f027"]
+sky_material = SubResource("ProceduralSkyMaterial_o3jxj")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5x1h"]
-atlas = ExtResource("3_gyfs4")
-region = Rect2(0, 0, 92, 34)
+[sub_resource type="Environment" id="Environment_2c62f"]
+background_mode = 2
+sky = SubResource("Sky_0f027")
+tonemap_mode = 2
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8mm7a"]
-atlas = ExtResource("3_gyfs4")
-region = Rect2(92, 0, 92, 34)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2c62f"]
+albedo_color = Color(0.3293162, 0.16685784, 0.06475127, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hq1ik"]
-atlas = ExtResource("3_gyfs4")
-region = Rect2(184, 0, 92, 34)
+[node name="MainScene" type="Node3D" unique_id=2088915219]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfk4m"]
-atlas = ExtResource("3_gyfs4")
-region = Rect2(0, 34, 92, 34)
+[node name="shapes" type="Node" parent="." unique_id=930517697]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
-atlas = ExtResource("3_gyfs4")
-region = Rect2(92, 34, 92, 34)
+[node name="Box" type="CSGBox3D" parent="shapes" unique_id=275099018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0132263, 0, 0)
+size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
-atlas = ExtResource("3_gyfs4")
-region = Rect2(184, 34, 92, 34)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="shapes" unique_id=1978817105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.013, 0.12512207, 0)
+visible = false
+radius = 0.25
+height = 0.74975586
+sides = 64
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wr18j"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d5x1h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8mm7a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hq1ik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nfk4m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_66tet")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ycvg")
-}],
-"loop": true,
-"name": &"default",
-"speed": 9.0
-}]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="shapes" unique_id=1041466824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.013, 0.09420285, 0)
+visible = false
+radius = 0.35
+radial_segments = 60
+rings = 25
 
-[sub_resource type="Animation" id="Animation_d5x1h"]
-resource_name = "JimmyMove"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.06, 2.03, 3.03, 4.04, 5.04, 6.07, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-101, 611), Vector2(150, 611), Vector2(350, 611), Vector2(550, 611), Vector2(750, 611), Vector2(950, 611), Vector2(1150, 611), Vector2(1350, 611)]
-}
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1341350232]
+transform = Transform3D(-0.9199951, -0.38972917, -0.041473232, 0.27553535, -0.71840024, 0.638734, -0.27872768, 0.57620484, 0.768309, 0, 5.2815146, 6.663358)
+shadow_enabled = true
 
-[sub_resource type="Animation" id="Animation_8mm7a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-101, 611)]
-}
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1496505751]
+environment = SubResource("Environment_2c62f")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hq1ik"]
-_data = {
-&"JimmyMove": SubResource("Animation_d5x1h"),
-&"RESET": SubResource("Animation_8mm7a")
-}
+[node name="Platform" type="CSGCylinder3D" parent="." unique_id=1016424511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99418545, -0.32343286, 0)
+height = 0.14160156
+sides = 6
+material = SubResource("StandardMaterial3D_2c62f")
 
-[node name="MainScene" type="Node2D" unique_id=1304818345]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=377242673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48645914, 1.8256445)
 
-[node name="MaxClothes" type="Node" parent="." unique_id=185037129]
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D" unique_id=1698187999]
 
-[node name="SamClothes" type="Node" parent="." unique_id=185753981]
+[node name="Container" type="Control" parent="Camera3D/CanvasLayer" unique_id=51474724]
+layout_mode = 3
+anchor_top = 0.022000002
+anchor_right = 0.393
+anchor_bottom = 1.0
+offset_top = -14.256001
+offset_right = 115.26398
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="Backgrounds" type="Node" parent="." unique_id=1936355858]
+[node name="Menu" type="ColorRect" parent="Camera3D/CanvasLayer/Container" unique_id=419091860]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -296.0
+offset_right = 230.0
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.60077924, 0.008769483, 1.92523e-07, 1)
 
-[node name="Office" type="TextureRect" parent="Backgrounds" unique_id=814606397]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Title" type="Label" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1703706962]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 126.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_0f027")
+theme_override_font_sizes/font_size = 40
+text = "Clara's Really Cool Awesome 
+(totally not overdue)
+PROJECT 3!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="OfficeHallway" type="TextureRect" parent="Backgrounds" unique_id=1813422098]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColourButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=708911403]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 148.0
+offset_right = 112.0
+offset_bottom = 198.0
+theme_override_fonts/font = ExtResource("1_0f027")
+theme_override_font_sizes/font_size = 39
+toggle_mode = true
+keep_pressed_outside = true
+text = "Colour"
 
-[node name="Sidewalk" type="TextureRect" parent="Backgrounds" unique_id=1827338065]
-z_index = -1
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 1150.0
-offset_bottom = 650.0
-texture = ExtResource("1_d5x1h")
+[node name="ColourSelect" type="ColorPicker" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton" unique_id=1480969548]
+layout_mode = 0
+offset_left = 111.0
+offset_top = -5.0
+offset_right = 411.0
+offset_bottom = 489.0
+scale = Vector2(1, 0.75)
+alignment = 1
+edit_alpha = false
+edit_intensity = false
+presets_visible = false
 
-[node name="OfficeTheme" type="AudioStreamPlayer2D" parent="." unique_id=2092154143]
-position = Vector2(593, 328)
-stream = ExtResource("2_gyfs4")
-autoplay = true
-parameters/looping = true
-
-[node name="SamAndMax" type="Sprite2D" parent="." unique_id=797958478]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(574, 402)
-texture = ExtResource("1_2c62f")
-
-[node name="JimmyBody" type="AnimatableBody2D" parent="." unique_id=1406466682]
-position = Vector2(-101, 611)
-scale = Vector2(2, 2)
-physics_material_override = SubResource("PhysicsMaterial_d5x1h")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="JimmyBody" unique_id=924361578]
-position = Vector2(-0.25, -0.25)
-shape = SubResource("RectangleShape2D_8mm7a")
-
-[node name="Jimmy" type="AnimatedSprite2D" parent="JimmyBody" unique_id=1065484589]
-light_mask = 8
-visibility_layer = 8
-z_index = 2
-sprite_frames = SubResource("SpriteFrames_wr18j")
-autoplay = "default"
-frame_progress = 0.4595413
-
-[node name="JimmyMovement" type="AnimationPlayer" parent="JimmyBody" unique_id=1639207700]
-libraries/ = SubResource("AnimationLibrary_hq1ik")
-autoplay = &"JimmyMove"
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1542839725]
-position = Vector2(575, 325)
+[node name="ShapeButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1966001283]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
