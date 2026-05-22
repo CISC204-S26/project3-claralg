@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://bem0ciy654gt3"]
 
 [ext_resource type="FontFile" uid="uid://f0xjklliigc" path="res://Assets/runescape_uf.ttf" id="1_0f027"]
+[ext_resource type="Script" uid="uid://dqttu521aejf3" path="res://Global.gd" id="1_66tet"]
+[ext_resource type="Texture2D" uid="uid://dfxucs48snwa8" path="res://Assets/Shapes/Cube.png" id="2_d5x1h"]
+[ext_resource type="Texture2D" uid="uid://1hq1xq5etbcd" path="res://Assets/Shapes/Cylinder.png" id="3_8mm7a"]
+[ext_resource type="Texture2D" uid="uid://dttpch5poxrtl" path="res://Assets/Shapes/Sphere.png" id="4_hq1ik"]
+[ext_resource type="Texture2D" uid="uid://bij3532cpxpu2" path="res://Assets/Skins/Cube/cobblestone.webp" id="5_nfk4m"]
+[ext_resource type="Texture2D" uid="uid://dlkk1cgx0kfwa" path="res://Assets/Skins/Cube/crate_texture.jpg" id="6_66tet"]
+[ext_resource type="Texture2D" uid="uid://co2vsiasrsf6k" path="res://Assets/Skins/Cube/Companion_Cube.jpg" id="7_7ycvg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
 sky_top_color = Color(0.6802667, 0.73713064, 0.81325704, 1)
@@ -20,6 +27,14 @@ tonemap_mode = 2
 albedo_color = Color(0.3293162, 0.16685784, 0.06475127, 1)
 
 [node name="MainScene" type="Node3D" unique_id=2088915219]
+script = ExtResource("1_66tet")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1341350232]
+transform = Transform3D(-0.9199952, -0.3897292, -0.041473243, 0.27553537, -0.71840036, 0.6387341, -0.2787277, 0.57620496, 0.768309, 0, 5.2815146, 6.663358)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1496505751]
+environment = SubResource("Environment_2c62f")
 
 [node name="shapes" type="Node" parent="." unique_id=930517697]
 
@@ -27,26 +42,19 @@ albedo_color = Color(0.3293162, 0.16685784, 0.06475127, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0132263, 0, 0)
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="shapes" unique_id=1978817105]
+[node name="Cylinder" type="CSGCylinder3D" parent="shapes" unique_id=1978817105]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.013, 0.12512207, 0)
 visible = false
 radius = 0.25
 height = 0.74975586
 sides = 64
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="shapes" unique_id=1041466824]
+[node name="Sphere" type="CSGSphere3D" parent="shapes" unique_id=1041466824]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.013, 0.09420285, 0)
 visible = false
 radius = 0.35
 radial_segments = 60
 rings = 25
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1341350232]
-transform = Transform3D(-0.9199951, -0.38972917, -0.041473232, 0.27553535, -0.71840024, 0.638734, -0.27872768, 0.57620484, 0.768309, 0, 5.2815146, 6.663358)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1496505751]
-environment = SubResource("Environment_2c62f")
 
 [node name="Platform" type="CSGCylinder3D" parent="." unique_id=1016424511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99418545, -0.32343286, 0)
@@ -101,9 +109,9 @@ vertical_alignment = 1
 
 [node name="ColourButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=708911403]
 layout_mode = 0
-offset_left = 12.0
+offset_left = 6.0
 offset_top = 148.0
-offset_right = 112.0
+offset_right = 106.0
 offset_bottom = 198.0
 theme_override_fonts/font = ExtResource("1_0f027")
 theme_override_font_sizes/font_size = 39
@@ -111,34 +119,238 @@ toggle_mode = true
 keep_pressed_outside = true
 text = "Colour"
 
-[node name="ColourSelect" type="ColorPicker" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton" unique_id=1480969548]
+[node name="ColourSelection" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton" unique_id=1097975195]
 layout_mode = 0
-offset_left = 108.0
-offset_top = -13.0
-offset_right = 442.0
-offset_bottom = 584.3334
-scale = Vector2(1, 0.75)
-alignment = 1
-edit_alpha = false
-edit_intensity = false
-presets_visible = false
+offset_left = 127.0
+offset_top = -14.0
+offset_right = 437.0
+offset_bottom = 63.0
+
+[node name="White" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection" unique_id=1930848079]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 73.0
+offset_bottom = 74.0
+
+[node name="WhiteButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection/White" unique_id=151433528]
+modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 71.0
+offset_bottom = 71.0
+
+[node name="Red" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection" unique_id=85236577]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 4.0
+offset_right = 150.0
+offset_bottom = 74.0
+color = Color(1, 0, 0, 1)
+
+[node name="RedButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection/Red" unique_id=1990163213]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+
+[node name="Green" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection" unique_id=1195546513]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 4.0
+offset_right = 228.0
+offset_bottom = 74.0
+color = Color(0, 1, 0, 1)
+
+[node name="GreenButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection/Green" unique_id=16256001]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+
+[node name="Blue" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection" unique_id=1347345438]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 4.0
+offset_right = 307.0
+offset_bottom = 74.0
+color = Color(0, 0, 1, 1)
+
+[node name="BlueButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu/ColourButton/ColourSelection/Blue" unique_id=1996461322]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
 
 [node name="ShapeButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1966001283]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 247.0
-offset_right = 105.0
-offset_bottom = 295.0
+offset_left = 6.0
+offset_top = 255.0
+offset_right = 99.0
+offset_bottom = 303.0
 theme_override_fonts/font = ExtResource("1_0f027")
 theme_override_font_sizes/font_size = 39
 toggle_mode = true
 keep_pressed_outside = true
 text = "Shape"
 
-[node name="Button" type="Button" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1998715420]
+[node name="ShapeSelection" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/ShapeButton" unique_id=227980137]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 80.5
+offset_top = -38.0
+offset_right = 390.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9691369, 0.9691369, 0.9691368, 1)
+
+[node name="CubeButton" type="TextureButton" parent="Camera3D/CanvasLayer/Container/Menu/ShapeButton/ShapeSelection" unique_id=1805992044]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 908.0
+offset_bottom = 953.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("2_d5x1h")
+
+[node name="CylinderButton" type="TextureButton" parent="Camera3D/CanvasLayer/Container/Menu/ShapeButton/ShapeSelection" unique_id=533136725]
+layout_mode = 0
+offset_left = 129.99998
+offset_top = 3.9999998
+offset_right = 633.0
+offset_bottom = 672.0
+scale = Vector2(0.13, 0.13)
+texture_normal = ExtResource("3_8mm7a")
+
+[node name="SphereButton" type="TextureButton" parent="Camera3D/CanvasLayer/Container/Menu/ShapeButton/ShapeSelection" unique_id=1414500785]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 1.0
+offset_right = 733.0
+offset_bottom = 501.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("4_hq1ik")
+
+[node name="SkinButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1998715420]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 361.0
+offset_right = 73.0
+offset_bottom = 409.0
 theme_override_fonts/font = ExtResource("1_0f027")
 theme_override_font_sizes/font_size = 39
 text = "Skin"
+
+[node name="CubeSkinSelection" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton" unique_id=763616896]
+layout_mode = 0
+offset_left = 127.0
+offset_top = -14.0
+offset_right = 437.0
+offset_bottom = 63.0
+
+[node name="Cobblestone" type="TextureButton" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton/CubeSkinSelection" unique_id=544530839]
+layout_mode = 0
+offset_left = 79.99999
+offset_top = 2.9999998
+offset_right = 680.0
+offset_bottom = 603.0
+scale = Vector2(0.12, 0.12)
+texture_normal = ExtResource("5_nfk4m")
+
+[node name="Crate" type="TextureButton" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton/CubeSkinSelection" unique_id=863771536]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 3.0
+offset_right = 668.0
+offset_bottom = 515.0
+scale = Vector2(0.14, 0.14)
+texture_normal = ExtResource("6_66tet")
+
+[node name="CompanionCube" type="TextureButton" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton/CubeSkinSelection" unique_id=591815205]
+layout_mode = 0
+offset_left = 229.99997
+offset_top = 1.0000014
+offset_right = 980.0
+offset_bottom = 751.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("7_7ycvg")
+
+[node name="Blank" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton/CubeSkinSelection" unique_id=916382729]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 73.0
+offset_bottom = 74.0
+
+[node name="BlankButton" type="Button" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton/CubeSkinSelection/Blank" unique_id=771743068]
+modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 71.0
+offset_bottom = 71.0
+
+[node name="CylinderSkinSelection" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton" unique_id=979700625]
+visible = false
+layout_mode = 0
+offset_left = 127.0
+offset_top = -14.0
+offset_right = 437.0
+offset_bottom = 63.0
+
+[node name="SphereSkinSelection" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu/SkinButton" unique_id=689503655]
+visible = false
+layout_mode = 0
+offset_left = 127.0
+offset_top = -14.0
+offset_right = 437.0
+offset_bottom = 63.0
+
+[node name="StringDisplay" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1475687704]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 436.0
+offset_right = 392.0
+offset_bottom = 513.0
+
+[node name="Current" type="Label" parent="Camera3D/CanvasLayer/Container/Menu/StringDisplay" unique_id=906365476]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 305.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StringEntry" type="ColorRect" parent="Camera3D/CanvasLayer/Container/Menu" unique_id=1394869044]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 536.0
+offset_right = 391.0
+offset_bottom = 576.0
+
+[node name="Color" type="Label" parent="Camera3D/CanvasLayer/Container/Menu/StringEntry" unique_id=1144324254]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 305.0
+offset_bottom = 73.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shape" type="Label" parent="Camera3D/CanvasLayer/Container/Menu/StringEntry" unique_id=1543801788]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Skin" type="Label" parent="Camera3D/CanvasLayer/Container/Menu/StringEntry" unique_id=2134721277]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
